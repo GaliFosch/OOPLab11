@@ -1,3 +1,5 @@
+using System;
+
 namespace ComplexAlgebra
 {
     /// <summary>
@@ -17,6 +19,44 @@ namespace ComplexAlgebra
     /// TODO:     - e.g. via the Equals(object) method
     public class Complex
     {
-        // TODO: fill this class\
+        public double Real{get; private set;}
+        public double Imaginary{get; private set;}
+
+        public double Modulus{get => Math.Sqrt(Real*Real+Imaginary*Imaginary);}
+        public double Phase{
+            get
+            {
+                if(Real!=0 && Imaginary!=0)
+                {
+                    return 2*Math.Atan(Imaginary/(Modulus+Real));
+                }else if(Real == 0 && Imaginary == 0)
+                {
+                    return 0;
+                }else if(Real==0)
+                {
+                    return (Imaginary > 0) ? Math.PI/2 : (3 * Math.PI)/2;
+                }else
+                {
+                    return (Real > 0) ? 0 : Math.PI;
+                }
+            }
+        }
+
+        public Complex(double real, double imaginary)
+        {
+            Real = real;
+            Imaginary = imaginary;
+        }
+
+        public Complex Complement() => new Complex(-Real,-Imaginary);
+
+        public Complex Plus(Complex c) => new Complex(Real + c.Real, Imaginary + c.Imaginary);
+
+        public Complex Minus(Complex c) => new Complex(Real - c.Real, Imaginary - c.Imaginary);
+
+        public bool Equals(Complex c) => (Real == c.Real && Imaginary == c.Imaginary);
+
+        public new string ToString() => Real.ToString() + (Imaginary>=0 ? "+" : "" ) + Imaginary.ToString() + "i";
+
     }
 }
