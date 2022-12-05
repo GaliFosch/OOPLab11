@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ComplexAlgebra;
 
 namespace Calculus
@@ -27,6 +28,12 @@ namespace Calculus
         public const char OperationPlus = '+';
         public const char OperationMinus = '-';
 
-        // TODO fill this class
+        private List<Complex> _values;
+        private List<char> _operations;
+
+        public Complex Value{
+            get;
+        }
+
     }
 }
