@@ -54,9 +54,15 @@ namespace ComplexAlgebra
 
         public Complex Minus(Complex c) => new Complex(Real - c.Real, Imaginary - c.Imaginary);
 
-        public bool Equals(Complex c) => (Real == c.Real && Imaginary == c.Imaginary);
-
         public new string ToString() => Real.ToString() + (Imaginary>=0 ? "+" : "" ) + Imaginary.ToString() + "i";
 
+        public override bool Equals(object obj)
+        {
+            return obj is Complex complex &&
+                   Real == complex.Real &&
+                   Imaginary == complex.Imaginary &&
+                   Modulus == complex.Modulus &&
+                   Phase == complex.Phase;
+        }
     }
 }
