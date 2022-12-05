@@ -64,5 +64,10 @@ namespace ComplexAlgebra
                    Modulus == complex.Modulus &&
                    Phase == complex.Phase;
         }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Real, Imaginary, Modulus, Phase);
+        }
     }
 }
